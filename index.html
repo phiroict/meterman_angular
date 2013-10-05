@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="js/MeterManController_v1.0.js"></script>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+<div ng-controller="MeterManCtrl">
+    <ul>
+        <li ng-repeat="meterField in meterFields">
+            <label for="{{meterField.id}}">{{meterField.text}}</label>
+            <input step="0.1" type="number"
+                   value="{{meterField.value}}"
+                   id="{{meterField.id}}"
+                   name="{{meterField.id}}"/>
+        </li>
+    </ul>
+    <div class="button-bar">
+        <div ng-repeat="button in buttons">
+            <button id="{{button.id}}" onclick="{{button.onClick}}">{{button.text}}</button>
+        </div>
+    </div>
+    <div class="button-bar button-bar-footer">
+        <div ng-repeat="footer in footers">
+            <button id="{{footer.id}}" onclick="{{footer.onClick}}">{{footer.text}}</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
