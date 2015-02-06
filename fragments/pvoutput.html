@@ -1,0 +1,14 @@
+<ul>
+    <li ng-repeat="meterField in pvOutputFields">
+        <label for="{{meterField.id}}">{{meterField.text}}</label>
+        <input step="0.1" type="number"
+               value="{{meterField.value}}"
+               id="{{meterField.id}}"
+               name="{{meterField.id}}"/>
+    </li>
+</ul>
+<div class="button-bar">
+    <div ng-repeat="button in buttons">
+        <button id="{{button.id}}" ng-click="processSubmitFunc(button.id)">{{button.text}}</button>
+    </div>
+</div>
