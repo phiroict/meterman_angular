@@ -1,7 +1,7 @@
 <!doctype html>
-<html ng-app>
+<html  ng-app="metermanApp">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
     <script src="js/MeterManController_v1.0.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
@@ -18,12 +18,12 @@
     </ul>
     <div class="button-bar">
         <div ng-repeat="button in buttons">
-            <button id="{{button.id}}" onclick="{{button.onClick}}">{{button.text}}</button>
+            <button id="{{button.id}}" ng-click="testFunc()">{{button.text}}</button>
         </div>
     </div>
     <div class="button-bar button-bar-footer">
         <div ng-repeat="footer in footers">
-            <button id="{{footer.id}}" onclick="{{footer.onClick}}">{{footer.text}}</button>
+            <button id="{{footer.id}}" ng-click="testFunc()">{{footer.text}}</button>
         </div>
     </div>
 </div>
