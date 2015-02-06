@@ -3,7 +3,7 @@ var metermanApp = angular.module('metermanApp', []);
 metermanApp.controller('MeterManCtrl', function ($scope) {
 
     $scope.processSubmitFunc = function (screenID) {
-        alert("Clicked");
+        alert("Clicked from button " + screenID);
     }
 
     $scope.changeScreen = function(screenToShow){
@@ -37,11 +37,22 @@ metermanApp.controller('MeterManCtrl', function ($scope) {
         {text: "Total this month", value: 0, id: "pvoutputMonth"}
     ];
 
-    $scope.buttons = [
+    $scope.meterValueButtons = [
         {text: "Clear", id: "cmdClear"},
         {text: "Get PV", id: "cmdGetPV"},
         {text: "Submit pvoutput", id: "cmdSubmitPVOutput"}
     ];
+
+    $scope.settingButtons = [
+        {text: "Clear", id: "cmdClearSettings"},
+        {text: "Save", id: "cmdSaveSettings"}
+    ];
+
+    $scope.pvoutputButtons = [
+
+        {text: "Refresh", id: "cmdRefresh"}
+    ];
+
     $scope.footers = [
         {text: "Meter values", id: "cmdMeterValues", screenVal:0},
         {text: "PVOutput", id: "cmdPVOutput", screenVal:1},
