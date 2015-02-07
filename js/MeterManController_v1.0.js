@@ -2,8 +2,19 @@ var metermanApp = angular.module('metermanApp', []);
 
 metermanApp.controller('MeterManCtrl', function ($scope) {
 
+    var model = null;
+
+    function getModel(){
+        if (model == null){
+            model = new meterManModel($scope);
+        }
+        return model;
+    }
+
     $scope.processSubmitFunc = function (screenID) {
-        alert("Clicked from button " + screenID);
+        m = getModel();
+        data = m.currentValuesFromPVOutput(screenID);
+        data("20150207");
     }
 
     $scope.changeScreen = function(screenToShow){
