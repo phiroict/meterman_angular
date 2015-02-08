@@ -3,6 +3,7 @@ var metermanApp = angular.module('metermanApp', []);
 metermanApp.controller('MeterManCtrl', function ($scope) {
 
     var model = null;
+    var dataModel = null;
 
     function getModel(){
         if (model == null){
@@ -10,11 +11,30 @@ metermanApp.controller('MeterManCtrl', function ($scope) {
         }
         return model;
     }
+    function getDataModel(){
+        if (dataModel == null){
+            dataModel = new meterManDatabase($scope);
+        }
+        return dataModel;
+    }
+
 
     $scope.processSubmitFunc = function (screenID) {
-        m = getModel();
-        data = m.currentValuesFromPVOutput(screenID);
-        data("20150207");
+        var m = getModel();
+        var d = getDataModel();
+
+        var processor = null;
+
+
+        switch(screenID){
+            case "cmdSaveSettings":
+                processor = d.storeSettings();
+                break;
+            default:
+                break;
+
+        }
+        processor();
     }
 
     $scope.changeScreen = function(screenToShow){
@@ -69,6 +89,13 @@ metermanApp.controller('MeterManCtrl', function ($scope) {
         {text: "PVOutput", id: "cmdPVOutput", screenVal:1},
         {text: "Settings", id: "cmdSettings", screenVal:2}
     ];
+
+    $scope.init = function(){
+
+        var d = getDataModel();
+        d.getSettings()();
+    }
+
 })
 
 

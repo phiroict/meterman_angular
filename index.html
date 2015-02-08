@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-<div ng-controller="MeterManCtrl">
+<div ng-controller="MeterManCtrl" ng-init="init()">
     <div ng-include="template.url"></div>
     <div class="button-bar button-bar-footer">
         <div ng-repeat="footer in footers">
