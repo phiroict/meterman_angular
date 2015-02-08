@@ -1,6 +1,6 @@
 var metermanApp = angular.module('metermanApp', []);
 
-metermanApp.controller('MeterManCtrl', function ($scope) {
+metermanApp.controller('MeterManCtrl', function ($scope, $http) {
 
     var model = null;
     var dataModel = null;
@@ -19,6 +19,7 @@ metermanApp.controller('MeterManCtrl', function ($scope) {
     }
 
 
+
     $scope.processSubmitFunc = function (screenID) {
         var m = getModel();
         var d = getDataModel();
@@ -29,12 +30,21 @@ metermanApp.controller('MeterManCtrl', function ($scope) {
         switch(screenID){
             case "cmdSaveSettings":
                 processor = d.storeSettings();
+                processor();
+                break;
+            case "cmdGetPV":
+                processor = m.currentValuesFromPVOutput("");
+                processor($scope, $http);
+                break
+            case "cmdSubmitPVOutput":
+                processor = d.storeMeters();
+                processor();
                 break;
             default:
                 break;
 
         }
-        processor();
+
     }
 
     $scope.changeScreen = function(screenToShow){
@@ -49,11 +59,12 @@ metermanApp.controller('MeterManCtrl', function ($scope) {
 
     $scope.template = $scope.templates[0];
     $scope.meterFields = [
-        {text: "Meter In High", value: 0, id: "meterInHigh"},
-        {text: "Meter In Low", value: 0, id: "meterInLow"},
-        {text: "Meter Out High", value: 0, id: "meterOutHigh"},
-        {text: "Meter In Low", value: 0, id: "meterOutLow"},
-        {text: "Meter PV In", value: 0, id: "meterPvIn"}
+        {text: "Meter In High", value: 0, id: "meterInHigh", type:"number"},
+        {text: "Meter In Low", value: 0, id: "meterInLow", type:"number"},
+        {text: "Meter Out High", value: 0, id: "meterOutHigh", type:"number"},
+        {text: "Meter In Low", value: 0, id: "meterOutLow", type:"number"},
+        {text: "Meter PV In", value: 0, id: "meterPvIn", type:"number"},
+        {text: "Measuring data", value: 0, id: "measureDate", type:"date"}
     ];
 
     $scope.settingsFields = [
@@ -94,6 +105,7 @@ metermanApp.controller('MeterManCtrl', function ($scope) {
 
         var d = getDataModel();
         d.getSettings()();
+        $scope.meterFields[5].value = new Date();
     }
 
 })

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MeterManProxy/MeterManProxy.iml" filepath="$PROJECT_DIR$/MeterManProxy/MeterManProxy.iml" />
       <module fileurl="file://$PROJECT_DIR$/meterman_angular.iml" filepath="$PROJECT_DIR$/meterman_angular.iml" />
     </modules>
   </component>
 </project>
-

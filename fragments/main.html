@@ -1,10 +1,11 @@
 <ul>
     <li ng-repeat="meterField in meterFields">
         <label for="{{meterField.id}}">{{meterField.text}}</label>
-        <input step="0.1" type="number"
+        <input step="0.1" type="{{meterField.type}}"
                value="{{meterField.value}}"
                id="{{meterField.id}}"
-               name="{{meterField.id}}"/>
+               name="{{meterField.id}}"
+               ng-model="meterField.value" />
     </li>
 </ul>
 <div class="button-bar">
